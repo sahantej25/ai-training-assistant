@@ -1,0 +1,40 @@
+# Application Configuration
+
+app:
+  name: "AI Training Assistant"
+  version: "1.0.0"
+  description: "AI-powered onboarding assistant with intelligent routing"
+
+data:
+  corpus_path: "./data/corpus"
+  evaluation_set: "./data/evaluation_set.csv"
+  manifest: "./data/dataset_manifest.json"
+
+vector_store:
+  type: "chromadb"
+  persist_directory: "./chroma_db"
+  collection_prefix: "training_assistant"
+
+embeddings:
+  model: "text-embedding-3-small"
+  chunk_size: 500
+  chunk_overlap: 50
+
+llm:
+  model: "gpt-4o-mini"
+  temperature: 0.1
+  max_tokens: 1000
+
+routes:
+  - general_company
+  - role_specific
+  - admin_policy
+  - direct_llm
+
+retrieval:
+  top_k: 3
+  similarity_threshold: 0.7
+
+logging:
+  level: "INFO"
+  file: "./logs/app.log"
