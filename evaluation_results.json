@@ -1,0 +1,333 @@
+{
+  "routing": {
+    "accuracy": 95.0,
+    "correct": 19,
+    "total": 20,
+    "details": [
+      {
+        "question_id": "Q01",
+        "question": "What are the company's core values and where should I document decisions?",
+        "expected_route": "general_company",
+        "actual_route": "general_company",
+        "correct": true
+      },
+      {
+        "question_id": "Q02",
+        "question": "What are standard work hours and the core collaboration window?",
+        "expected_route": "general_company",
+        "actual_route": "general_company",
+        "correct": true
+      },
+      {
+        "question_id": "Q03",
+        "question": "What tools are considered common internal tools during onboarding?",
+        "expected_route": "general_company",
+        "actual_route": "role_specific",
+        "correct": false
+      },
+      {
+        "question_id": "Q04",
+        "question": "As a Data Analyst, what are the first 30 days expectations?",
+        "expected_route": "role_specific",
+        "actual_route": "role_specific",
+        "correct": true
+      },
+      {
+        "question_id": "Q05",
+        "question": "Who should a Product Manager ask for feasibility checks and why?",
+        "expected_route": "role_specific",
+        "actual_route": "role_specific",
+        "correct": true
+      },
+      {
+        "question_id": "Q06",
+        "question": "What are key responsibilities of a Product Manager in this organization?",
+        "expected_route": "role_specific",
+        "actual_route": "role_specific",
+        "correct": true
+      },
+      {
+        "question_id": "Q07",
+        "question": "Which tools are commonly used by a Data Analyst here?",
+        "expected_route": "role_specific",
+        "actual_route": "role_specific",
+        "correct": true
+      },
+      {
+        "question_id": "Q08",
+        "question": "How do I submit an expense claim and by when?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q09",
+        "question": "Are meal expenses reimbursable during business travel and what is the daily limit?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q10",
+        "question": "How do I request PTO and what notice is expected for planned leave?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q11",
+        "question": "What should I do if I can\u2019t access a tool on Day 1?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q12",
+        "question": "What is the standard turnaround time for access requests?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q13",
+        "question": "Do I need to fill timesheets and when are they due?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q14",
+        "question": "What is the reimbursement timeline after an expense is approved?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q15",
+        "question": "What are the steps to take if I suspect a security incident?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q16",
+        "question": "How do I request an employment verification letter?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q17",
+        "question": "How many PTO days can be carried forward?",
+        "expected_route": "admin_policy",
+        "actual_route": "admin_policy",
+        "correct": true
+      },
+      {
+        "question_id": "Q18",
+        "question": "What is my exact salary breakup and tax deductions?",
+        "expected_route": "direct_llm",
+        "actual_route": "direct_llm",
+        "correct": true
+      },
+      {
+        "question_id": "Q19",
+        "question": "Can you approve my leave request right now?",
+        "expected_route": "direct_llm",
+        "actual_route": "direct_llm",
+        "correct": true
+      },
+      {
+        "question_id": "Q20",
+        "question": "Write a personal performance improvement plan for me based on my manager's feedback last week.",
+        "expected_route": "direct_llm",
+        "actual_route": "direct_llm",
+        "correct": true
+      }
+    ]
+  },
+  "quality": {
+    "citation_rate": 100.0,
+    "relevance_rate": 100.0,
+    "has_sources_count": 17,
+    "relevant_count": 17,
+    "total": 17,
+    "details": [
+      {
+        "question_id": "Q01",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "company_overview.md"
+        ],
+        "answer_preview": "the company's core values are:\n\n- customer-first\n- ownership\n- clarity and transparency\n- continuous learning\n- data-informed decisions\n\nyou should document decisions in the project wiki within 24 hou"
+      },
+      {
+        "question_id": "Q02",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "company_overview.md"
+        ],
+        "answer_preview": "the standard work hours are from 10:00 to 19:00 local time, with flexibility allowed upon manager approval. the core collaboration window is from 12:00 to 16:00. \n\n[source: company_overview.md]"
+      },
+      {
+        "question_id": "Q03",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "data_analyst_role.md",
+          "product_manager_role.md"
+        ],
+        "answer_preview": "the common internal tools during onboarding for different roles are as follows:\n\nfor the product manager role:\n- project tracking board\n- product analytics\n- documentation/wiki\n- customer feedback cha"
+      },
+      {
+        "question_id": "Q04",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "data_analyst_role.md",
+          "product_manager_role.md"
+        ],
+        "answer_preview": "as a data analyst, the first 30 days expectations are to:\n\n1. learn key business metrics and where they are defined.\n2. deliver one metrics report and one dashboard update.\n3. document at least 5 metr"
+      },
+      {
+        "question_id": "Q05",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "data_analyst_role.md",
+          "product_manager_role.md"
+        ],
+        "answer_preview": "a product manager should ask the engineering lead for feasibility checks. this is important because the engineering lead can provide insights into the technical viability of proposed features and ensu"
+      },
+      {
+        "question_id": "Q06",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "data_analyst_role.md",
+          "product_manager_role.md"
+        ],
+        "answer_preview": "the key responsibilities of a product manager in this organization include:\n\n- defining product goals and success metrics\n- writing requirements and coordinating delivery with engineering/design\n- man"
+      },
+      {
+        "question_id": "Q07",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "data_analyst_role.md",
+          "product_manager_role.md"
+        ],
+        "answer_preview": "the commonly used tools by a data analyst here include:\n\n- sql + notebook environment\n- bi dashboard tool\n- version control for analysis code (as applicable)\n\n[source: data_analyst_role.md]"
+      },
+      {
+        "question_id": "Q08",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "expense_policy.md",
+          "onboarding_faq.md"
+        ],
+        "answer_preview": "to submit an expense claim, use the expense portal and ensure you submit it within 10 days of incurring the expense. you must attach an itemized receipt, and if it's a travel expense, include your iti"
+      },
+      {
+        "question_id": "Q09",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "travel_guidelines.md",
+          "expense_policy.md"
+        ],
+        "answer_preview": "yes, meal expenses are reimbursable during business travel, with a daily limit of up to 800 in local currency, provided that itemized receipts are submitted. [expense_policy.md]"
+      },
+      {
+        "question_id": "Q10",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "onboarding_faq.md",
+          "leave_policy.md"
+        ],
+        "answer_preview": "to request paid time off (pto), you need to apply through the hr portal. for planned leave, you are expected to submit your request at least 7 days in advance [leave_policy.md][onboarding_faq.md]."
+      },
+      {
+        "question_id": "Q11",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "it_tools_access.md",
+          "onboarding_faq.md"
+        ],
+        "answer_preview": "if you can't access a tool on day 1, you should create an it ticket with the subject \u201cday1 access blocker\u201d and also notify the onboarding coordinator in your team channel. this will help expedite the "
+      },
+      {
+        "question_id": "Q12",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "hr_processes.md",
+          "it_tools_access.md"
+        ],
+        "answer_preview": "the standard turnaround time for access requests is 1\u20132 business days [it_tools_access.md]."
+      },
+      {
+        "question_id": "Q13",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "expense_policy.md",
+          "timesheets_and_attendance.md",
+          "onboarding_faq.md"
+        ],
+        "answer_preview": "yes, you need to fill timesheets if you are in a client-billable role or a select project role. timesheets are due weekly on monday by 12:00 pm for the previous week\u2019s work [timesheets_and_attendance."
+      },
+      {
+        "question_id": "Q14",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "expense_policy.md",
+          "onboarding_faq.md"
+        ],
+        "answer_preview": "the reimbursement timeline after an expense is approved is within 7\u201310 business days [expense_policy.md]."
+      },
+      {
+        "question_id": "Q15",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "security_compliance.md",
+          "it_tools_access.md",
+          "code_of_conduct.md"
+        ],
+        "answer_preview": "if you suspect a security incident, follow these steps:\n\n1. disconnect the affected device from the network (if it is safe to do so).\n2. notify it & security via the incident hotline or by submitting "
+      },
+      {
+        "question_id": "Q16",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "hr_processes.md",
+          "onboarding_faq.md"
+        ],
+        "answer_preview": "to request an employment verification letter, you need to open an hr ticket and select the category \u201cletters\u201d in the hr portal. \n\n[source: hr_processes.md]"
+      },
+      {
+        "question_id": "Q17",
+        "has_sources": true,
+        "is_relevant": true,
+        "sources": [
+          "expense_policy.md",
+          "leave_policy.md"
+        ],
+        "answer_preview": "you can carry forward up to 5 pto days to the next year [leave_policy.md]."
+      }
+    ]
+  },
+  "summary": {
+    "routing_accuracy": 95.0,
+    "citation_rate": 100.0,
+    "relevance_rate": 100.0
+  }
+}
