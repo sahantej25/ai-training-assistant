@@ -40,16 +40,15 @@ RAG_SYSTEM_PROMPT = """You are a helpful AI assistant for employee onboarding an
 Your role:
 - Answer questions based ONLY on the provided context
 - Be concise and specific
-- Always cite your sources using [source_file] notation
 - If information is not in the context, say "I don't have that information in the knowledge base."
 
 Guidelines:
 - Be friendly and professional
 - Provide actionable information
 - Keep answers focused and clear
-- Always include source citations
+- Do NOT include any source citations or references in your answer
 
-Format your answer clearly with sources at the end."""
+Format your answer clearly without any source notations."""
 
 RAG_USER_TEMPLATE = """Context from company documents:
 
@@ -59,7 +58,9 @@ RAG_USER_TEMPLATE = """Context from company documents:
 
 Question: {question}
 
-Answer (with sources):"""
+Important: Provide a direct answer WITHOUT including any [source: ...] citations or references. Sources will be displayed separately.
+
+Answer:"""
 
 
 DIRECT_LLM_PROMPT = """You are a helpful AI assistant for employee onboarding.

@@ -1,6 +1,7 @@
 import streamlit as st
 import sys
 from pathlib import Path
+import re
 
 # Add parent to path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -63,6 +64,12 @@ if "messages" not in st.session_state:
 if "assistant" not in st.session_state:
     st.session_state.assistant = load_assistant()
 
+# Handle example question selection BEFORE sidebar
+user_input = None
+if "selected_question" in st.session_state:
+    user_input = st.session_state.selected_question
+    del st.session_state.selected_question
+
 # Sidebar
 with st.sidebar:
     st.markdown("### 🤖 AI Training Assistant")
@@ -97,6 +104,7 @@ with st.sidebar:
     for question in example_questions:
         if st.button(question, key=question, use_container_width=True):
             st.session_state.selected_question = question
+            st.rerun()  # ✅ Force rerun immediately
     
     st.markdown("---")
     
@@ -106,7 +114,9 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("#### 📈 Stats")
-    st.metric("Total Questions", len([m for m in st.session_state.messages if m["role"] == "user"]))
+    # ✅ Calculate total questions dynamically
+    total_questions = len([m for m in st.session_state.messages if m["role"] == "user"])
+    st.metric("Total Questions", total_questions)
 
 # Main header
 st.markdown('<div class="main-header">🤖 AI Training Assistant</div>', unsafe_allow_html=True)
@@ -136,14 +146,13 @@ for message in st.session_state.messages:
             # Sources
             if metadata.get("sources"):
                 st.markdown("**📚 Sources:**")
-                for source in metadata["sources"]:
-                    st.markdown(f'<span class="source-badge">{source}</span>', unsafe_allow_html=True)
+                sources_html = " ".join(
+                    [f'<span class="source-badge">{source}</span>' for source in metadata["sources"]]
+                )
+                st.markdown(sources_html, unsafe_allow_html=True)
 
-# Handle example question selection
-if "selected_question" in st.session_state:
-    user_input = st.session_state.selected_question
-    del st.session_state.selected_question
-else:
+# Get chat input (if no example question was selected)
+if not user_input:
     user_input = st.chat_input("Ask me anything about the company...")
 
 # Process user input
@@ -176,8 +185,10 @@ if user_input:
         # Sources
         if result.get("sources"):
             st.markdown("**📚 Sources:**")
-            for source in result["sources"]:
-                st.markdown(f'<span class="source-badge">{source}</span>', unsafe_allow_html=True)
+            sources_html = " ".join(
+                [f'<span class="source-badge">{source}</span>' for source in result["sources"]]
+            )
+            st.markdown(sources_html, unsafe_allow_html=True)
     
     # Add assistant message to history
     st.session_state.messages.append({
@@ -188,6 +199,9 @@ if user_input:
             "sources": result.get("sources", [])
         }
     })
+    
+    # ✅ Force rerun to update the stats and show chat input again
+    st.rerun()
 
 # Footer
 st.markdown("---")

@@ -72,7 +72,7 @@ class AITrainingAssistant:
         
         for i, doc in enumerate(docs, 1):
             source_file = doc.metadata.get('source_file', 'unknown')
-            context_parts.append(f"[{source_file}]\n{doc.page_content}\n")
+            context_parts.append(f"{doc.page_content}")
             sources.append(source_file)
         
         context = "\n---\n".join(context_parts)
