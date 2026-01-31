@@ -231,7 +231,9 @@ git push -u origin main
 2. Go to **Secrets** tab
 3. Paste your OpenAI API key:
 ```
-OPENAI_API_KEY = "your-openai-api-key-here"
+OPENAI_API_KEY = "sk-your-actual-key-here"
+OPENAI_MODEL = "gpt-4o-mini"
+EMBEDDING_MODEL = "text-embedding-3-small"
 ```
 4. Click **Save** (app will auto-redeploy)
 
