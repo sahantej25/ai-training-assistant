@@ -3,6 +3,7 @@
 from openai import OpenAI
 import sys
 from pathlib import Path
+from typing import Dict, List
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from src.utils.config import config
@@ -51,14 +52,59 @@ class QueryRouter:
             print(f"❌ Router error: {e}")
             return "direct_llm"
     
-    def classify_with_confidence(self, question: str) -> dict:
-        """Classify and return confidence info"""
-        route = self.classify(question)
-        return {
-            "route": route,
-            "question": question,
-            "is_retrieval_needed": route != "direct_llm"
-        }
+    def classify_with_confidence(self, question: str, conversation_history: List[Dict] = None) -> dict:
+        """Classify with conversation context"""
+        
+        if conversation_history is None:
+            conversation_history = []
+        
+        # Build messages with history for better context understanding
+        messages = [
+            {"role": "system", "content": ROUTER_SYSTEM_PROMPT}
+        ]
+        
+        # Add recent history (last 4 messages) for context
+        recent_history = conversation_history[-4:] if len(conversation_history) > 4 else conversation_history
+        messages.extend(recent_history)
+        
+        # Add current question
+        messages.append({
+            "role": "user", 
+            "content": ROUTER_USER_TEMPLATE.format(question=question)
+        })
+        
+        try:
+            response = self.client.chat.completions.create(
+                model=config.OPENAI_MODEL,
+                messages=messages,
+                temperature=0.1,
+                max_tokens=50
+            )
+            
+            route = response.choices[0].message.content.strip().lower()
+            
+            # Validate route
+            if route in self.valid_routes:
+                return {
+                    "route": route,
+                    "question": question,
+                    "is_retrieval_needed": route != "direct_llm"
+                }
+            else:
+                print(f"⚠️ Unknown route '{route}', defaulting to direct_llm")
+                return {
+                    "route": "direct_llm",
+                    "question": question,
+                    "is_retrieval_needed": False
+                }
+                
+        except Exception as e:
+            print(f"❌ Router error: {e}")
+            return {
+                "route": "direct_llm",
+                "question": question,
+                "is_retrieval_needed": False
+            }
 
 
 def test_router():
